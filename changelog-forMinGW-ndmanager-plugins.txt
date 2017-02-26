@@ -1,0 +1,11 @@
+remove src/process_extractleds and scripts/ndm_extractleds
+
+remove python/ and matlab/
+
+replace strdupa with strdup in files under src/*
+
+add strsep.c and include it from src/process_extractsppikes.cpp and src/process_medianthreshold
+
+include stdint.hÅ@from src/process_nlxconvert/customtypes.h
+
+change install directory from /usr to ~/ndmanager-plugins

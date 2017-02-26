@@ -21,6 +21,7 @@
 #define CUSTOM_TYPES
 
 #include <stdlib.h>
+#include <stdint.h>
 
 // Neuralynx data types are defined as a custom types (easier to read and maintain)
 typedef int16_t   Data;
@@ -37,7 +38,7 @@ typedef int32_t	Coordinates;
 #define NCS_FILE_HEADER_SIZE 16*1024
 #define NCS_RECORD_HEADER_SIZE 20
 #define NCS_MAX_FREQUENCY_ERROR 2 // Allowable error in sampling frequency (Hz)
-#define NCS_MAX_OVERLAP 100 // Allowable overlap between successive records (µs)
+#define NCS_MAX_OVERLAP 100 // Allowable overlap between successive records (μs)
 // nvt
 #define NVT_FILE_HEADER_SIZE 16*1024
 #define NVT_N_TARGETS 50

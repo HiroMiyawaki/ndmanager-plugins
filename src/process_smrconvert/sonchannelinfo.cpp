@@ -104,8 +104,8 @@ void SONChannelInfo::read()
 	}
 	else
 	{
-		firstBlockOffset = (int64_t)fBlockOffset*diskBlock;
-		lastBlockOffset = (int64_t)lBlockOffset*diskBlock;
+		firstBlockOffset = fBlockOffset*diskBlock;
+		lastBlockOffset = lBlockOffset*diskBlock;
 		nBlocks = nBlocksLSW+65536*nBlocksMSW;
 	}
 }

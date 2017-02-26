@@ -37,6 +37,8 @@
 #include <cstring>
 #include <cstdlib>
 
+#include "strsep.c"
+
 static bool verbose = false;
 const char *program_version = "process_medianthreshold 0.3b (21-12-2007)";
 int allChannels_nbRecords = 0; // number of records in all channels
@@ -193,7 +195,7 @@ int main(int argc,char *argv[]) {
 	} // for i
 
 	/** Computes threshold for each channel groups */
-	groups = strdupa (arguments.channelList); // Split groups
+	groups = strdup (arguments.channelList); // Split groups
 	currentGroup = strsep (&groups, GROUP_SEPARATOR); // focus on the first group
 
 	while(currentGroup != NULL) {

@@ -1,6 +1,11 @@
-NDManager Plugins
-=================
+ndmanager-plugins
+=====================
 
-NDManager Plugins include a number of scripts and programs to automatically pre-process files recorded with data acquisition systems: file conversion (from vendor-specific, proprietary formats to open formats used by Klusters, Neuroscope and NDManager), channel resampling and reordering, high-pass filtering and spike detection, waveform feature extraction (PCA) for subsequent spike sorting, video transcoding and LED tracking, etc.
+Ndmanager-plugins (base on 1.4.7)
+https://sourceforge.net/projects/ndmanager/files/ndmanager-plugins/
+And some changes were made for minGW. (see changelog-forMinGW-ndmanager-plugins.txt)
 
-Developed by Lynn Hazan and Michaël Zugaro, distributed under the GNU Public License v2.
+There is no warranty. Use them at your own risk.
+
+Quick guide to build is in buildGuide-forMinGW.txt
+Binary files made on my windows are in bin/, but they may not be executable on your environment.

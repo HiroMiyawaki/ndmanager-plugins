@@ -34,7 +34,7 @@
 
 using namespace std;
 
-int main(int argc,char *argv[])
+main(int argc,char *argv[])
 {
 	int nClusters,clusterID,time;
 	int feature[1000];

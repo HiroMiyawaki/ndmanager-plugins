@@ -5,7 +5,7 @@
     email                : nicolas.lebas@college-de-france.fr
 
 	 Enabling LFS + code cleaning
-    copyright            : (C) 2008 by Michaël Zugaro
+    copyright            : (C) 2008 by Michael Zugaro
     email                : michael.zugaro@college-de-france.fr
 
 
@@ -44,6 +44,8 @@
 
 #include <sstream>
 #include <fstream>
+
+#include "strsep.c"
 
 int buffer_size = BUFFER_CHANNEL_SIZE; // total buffer size
 static bool verbose = false;
@@ -321,10 +323,10 @@ int main(int argc,char *argv[]) {
 			cout << "Positions output file for group #"<<grp+1<<" : " 
 			<< spikeTimeOutputFileName[grp] << endl;
 	} // for grp
-	
+
 	// Search spikes position loop
 	while(!feof(inputFile) && !isLastLoop) {
-		
+
 		if(nbLoops == 0) {
 			// Store 1st records in nextRec for the init phase
 			if(arguments.isInputFileProvided) {
@@ -422,21 +424,19 @@ int main(int argc,char *argv[]) {
 												arguments.totalChannelNumber,
 												prevVals);
 						}
-					
+						
 						if(maxId[grp] != -1) {
 							double prevVal = cur_buffer[(maxId[grp]
 								- arguments.totalChannelNumber
 								+ spkChanId[grp])];
 							
 							double nextVal; // rec after max
-							
 							// next rec is current buffer 1st rec
 							if((maxId[grp] + 
 								arguments.totalChannelNumber) ==
 								buffer_size) {
-									if(!isLastLoop) {
-										nextVal = nextRec[spkChanId[grp]];
-									}
+								
+								nextVal = nextRec[spkChanId[grp]];
 							}
 							// next rec is in previous buffer
 							else {
@@ -452,12 +452,11 @@ int main(int argc,char *argv[]) {
 								prevBuffer_spkChanId[grp] = spkChanId[grp];
 							} // if isRealPeak
 						} // if maxId != -1
-						
 						recInPrevBuffer[grp] = (rec_nb-i) /
 												arguments.totalChannelNumber;
 						maxId[grp] = -1;  // reset MAX value for next buffer
 						i = buffer_size; // go to the end of the buffer
-					
+						
 					// spike is in current buffer (if it is a significant one)
 					} else {
 						off_t maxFullId = -1;
@@ -692,7 +691,7 @@ int main(int argc,char *argv[]) {
 								} // if spike in current buffer
 							} // if isMaxInCurBuf
 						} // if maxFullId
-
+						
 						i = maxEndSpike;
 						
 						// Reset all variables
@@ -700,7 +699,6 @@ int main(int argc,char *argv[]) {
 						// no more MAX value
 						isNegativeMax[grp] = false;  isMaxInCurBuf[grp] = true;
 						maxEndSpike = -1; isMaxInCurBuf[grp] = true;
-						
 						if(!isKeepPrevMax) {
 							spkChanId[grp] = -1; prevBuffer_spkChanId[grp] = -1;
 							// nothing in old buffer
@@ -710,11 +708,10 @@ int main(int argc,char *argv[]) {
 						}
 					} // if maxEndSpike >= rec_nb (spike in current buffer)
 				} // if spkChanId[grp] > -1
-
 				i+=arguments.totalChannelNumber;
 			} // while i (current buffer)
 		} // for grp
-		
+
 		nRecTot += rec_nb/arguments.totalChannelNumber;
 		nbLoops++; // one more loop
 	} // while (inputFile)
@@ -1635,7 +1632,7 @@ int getThresholdsFromArg(int *thresNb_group, double **thresList,
 	char *groups, *currentGroup, *thresholds; // Groups of electrodes and thr
 
 	// extract thresholds from arguments
-	groups = strdupa (arguments.thresList); // Split groups
+	groups = strdup (arguments.thresList); // Split groups
 	currentGroup = strsep (&groups, GROUP_SEPARATOR); // focus on the 1st group
 
 	while(currentGroup != NULL) {
@@ -1692,7 +1689,7 @@ int getChannelsFromArg(int *channelNb_group, int **channelList,
 	char *groups, *currentGroup, *channels; // Groups of electrodes and channels
 
 	// extract channels from arguments
-	groups = strdupa (arguments.channelList); // Split groups
+	groups = strdup (arguments.channelList); // Split groups
 	currentGroup = strsep (&groups, GROUP_SEPARATOR); // focus on the 1st group
 
 	while(currentGroup != NULL) {

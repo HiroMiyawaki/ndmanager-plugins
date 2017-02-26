@@ -18,11 +18,6 @@
     <value></value>
     <status>Optional</status>
    </parameter>
-   <parameter>
-    <name>frequency</name>
-    <value>30</value>
-    <status>Optional</status>
-   </parameter>
   </parameters>
   <help>Transcode video file (convert to a different codec).
 
@@ -44,10 +39,6 @@ Output file codec - possible choices include:
  * m1v (video-only MPEG-1)
 
 Leave empty if no transcoding is required
-
-# frequency
-
-Output video frame rate (default 30)
 </help>
  </program>
 </parameter>

@@ -1,0 +1,36 @@
+1. install msys2
+	get installer from http://www.msys2.org/
+	"x86_64" for 64-bit, "i686" for 32-bit windows
+
+	after installation, launch msys2 and update the system using the following
+	> pacman -Syu
+	
+	if required, force quit msys2, relunch it, and resume update by running the following
+	> pacman -Syu
+
+	then, you can quit msys2 for now.
+
+2. copy the tar ball to anywhere you can access through msys2
+	Probably the easiest option for 64bit is C:\msys64\home\{yousername}, but it's up to you.
+
+3. install minGW to msys2
+	run msys2 64 bit (or 32bit) from the start menu
+	then install "base-devel" and "mingw-w64-x86_64-toolchain"
+	 (or "mingw-w64-i686-toolchain" for 32bit) using the following
+	> pacman -S base-devel mingw-w64-x86_64-toolchain
+
+4. install libraries to msys2
+	> pacman -S mingw-w64-x86_64-libxml++
+
+5. build ndmanager plugins
+	> cd ndmanager-plugins
+	> make
+	> make install
+
+6. take files generated in ~/ndmanager-plugins/bin/ to anywhere you want (and add it to PATH, if you want)
+
+7. enjoy the products!
+
+
+
+
